@@ -701,6 +701,5 @@ def deconnexion():
     return redirect("/connexion")
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
