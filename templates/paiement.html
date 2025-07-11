@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+      <link rel="icon website" href="/static/images/logo.jpeg">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activation Premium</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0b0b0b;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .header a {
+      color: #6aff6a;
+      text-decoration: underline;
+    }
+
+    .container {
+      background: #fff;
+      color: #222;
+      padding: 40px 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,255,0,0.15);
+    }
+
+    h2 {
+      color: #0c7c0c;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .info {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      color: #1b5e20;
+      font-size: 15px;
+    }
+
+    .btn {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .mobilemoney { background-color: #4caf50; }
+    .paypal      { background-color: #0070ba; }
+    .visa        { background-color: #2e7d32; }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .logout-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #6aff6a;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      border: 1px solid #6aff6a;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .logout-link:hover {
+      background-color: #6aff6a;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    ⚠️ Si aucun service ne fonctionne, <a href="https://chat.whatsapp.com/BtuQKTtzaEXB7TicE6NyOQ?mode=ac_t" target="_blank">écrivez-moi ici sur WhatsApp</a>
+  </div>
+
+  <div class="container">
+    <h2>Accès Premium requis</h2>
+    <p>Bonjour <strong>{{ prenom }}</strong>,</p>
+
+    <div class="info">
+      Votre période gratuite est expirée.<br>
+      Veuillez activer votre compte Premium pour continuer (3000 FCFA / mois).
+    </div>
+
+    <form action="/paiement" method="post">
+      <button class="btn mobilemoney" type="submit">Payer avec Mobile Money</button>
+    </form>
+
+    <a href="https://paypal.me/TONUTILISATEUR" target="_blank" class="btn paypal">Payer avec PayPal</a>
+    <a href="https://ton-lien-cinetpay-ou-stripe" target="_blank" class="btn visa">Payer avec Carte VISA</a>
+
+    <div class="footer">
+      <p style="font-size: 13px; color: #777;">Après paiement, vous serez redirigé automatiquement vers votre espace personnel.</p>
+      <a href="/deconnexion" class="logout-link">Se déconnecter</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="icon website" href="/static/images/logo.jpeg">
+
+  <title>Splash ZONEBOURSE</title>
+  <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap' rel='stylesheet'>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #086008;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo-container {
+      position: relative;
+      height: 12vw;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+    }
+
+    .letter {
+      font-size: 12vw;
+      font-weight: 700;
+      opacity: 0;
+    }
+
+    #letterZ {
+      animation: slideInLeft 0.8s forwards;
+    }
+
+    #letterB {
+      animation: slideInRight 0.8s forwards;
+    }
+
+    @keyframes slideInLeft {
+      0% { transform: translateX(-120vw); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      0% { transform: translateX(120vw); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .typewriter {
+      margin-top: 1rem;
+      font-size: 5vw;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 0.15em solid #fff;
+      width: 0;
+      opacity: 0;
+      animation: typing 2s steps(10, end) 0.9s forwards,
+                 blinkCaret 0.8s step-end infinite 0.9s;
+    }
+
+    @keyframes typing {
+      from { width: 0; opacity: 1; }
+      to { width: 10ch; opacity: 1; }
+    }
+
+    @keyframes blinkCaret {
+      from, to { border-color: transparent; }
+      50% { border-color: #fff; }
+    }
+  </style>
+
+  <script>
+    setTimeout(function () {
+      window.location.href = "/couverture"; // Redirection vers la page de couverture 
+    }, 3000); // 3 secondes
+  </script>
+</head>
+<body>
+  <div class='logo-container'>
+    <span id='letterZ' class='letter'>Z</span><span id='letterB' class='letter'>B</span>
+  </div>
+
+  <div class='typewriter'>ZONEBOURSE</div>
+</body>
+</html>

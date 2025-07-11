@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+    <link rel="icon website" href="/static/images/logo.jpeg">
+
+  <title>Admin Bourses</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      color: black;
+    }
+
+    header {
+      background-color: #0a500a;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    form {
+      max-width: 700px;
+      margin: auto;
+      background: #f5f5f5;
+      padding: 20px;
+      border: 2px solid #0a500a;
+      border-radius: 8px;
+    }
+
+    input[type="text"], input[type="date"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #0a500a;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 95%;
+      margin: 30px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #0a500a;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .action-btn {
+      padding: 6px 12px;
+      margin: 0 3px;
+      border: none;
+      border-radius: 3px;
+      color: white;
+    }
+
+    .modifier { background-color: #3498db; }
+    .supprimer { background-color: #e74c3c; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎓 Gestion des Bourses</h1>
+</header>
+
+<h2>{{ 'Modifier une bourse' if edit else 'Ajouter une bourse' }}</h2>
+
+<form method="POST" action="/admin/bourses/save">
+  {% if edit %}
+    <input type="hidden" name="id" value="{{ edit.id }}">
+  {% endif %}
+
+  <label>Titre</label>
+  <input type="text" name="titre" required value="{{ edit.titre if edit else '' }}">
+
+  <label>Description</label>
+  <textarea name="description">{{ edit.description if edit else '' }}</textarea>
+
+  <label>Pays</label>
+  <input type="text" name="pays" value="{{ edit.pays if edit else '' }}">
+
+  <label>Niveau d'étude</label>
+  <input type="text" name="niveau_etude" value="{{ edit.niveau_etude if edit else '' }}">
+
+  <label>Statut / Type de bourse</label>
+  <select name="type" required>
+    <option value="">-- Choisir un statut --</option>
+    <option value="universitaire" {% if edit and edit.type == 'universitaire' %}selected{% endif %}>Universitaire</option>
+    <option value="totale" {% if edit and edit.type == 'totale' %}selected{% endif %}>Totale</option>
+    <option value="partielle" {% if edit and edit.type == 'partielle' %}selected{% endif %}>Partielle</option>
+  </select>
+
+  <label>Date limite</label>
+  <input type="date" name="date_limite" value="{{ edit.date_limite if edit else '' }}">
+
+  <label>Lien de candidature</label>
+  <input type="text" name="lien" value="{{ edit.lien if edit else '' }}">
+
+  <button type="submit">Enregistrer</button>
+</form>
+
+<h2>📋 Liste des bourses</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Pays</th>
+      <th>Type</th>
+      <th>Date limite</th>
+      <th>lien</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in bourses %}
+    <tr>
+      <td>{{ b.titre }}</td>
+      <td>{{ b.pays }}</td>
+      <td>{{ b.type }}</td>
+      <td>{{ b.date_limite }}</td>
+      <td>{{b.lien}}</td>
+      <td>
+        <a href="/admin/bourses/{{ b.id }}/edit" class="action-btn modifier">Modifier</a>
+        <form action="/admin/bourses/{{ b.id }}/delete" method="POST" style="display:inline-block" onsubmit="return confirm('Supprimer cette bourse ?');">
+          <button type="submit" class="action-btn supprimer">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>

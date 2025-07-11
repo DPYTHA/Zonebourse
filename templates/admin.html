@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/static/images/logo.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panneau Admin - ZoneBourse</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #111;
+      margin: 0;
+    }
+
+    header {
+      background-color: #0a500a;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    .les_offres {
+      padding: 10px 20px;
+    }
+
+    .les_offres button {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .les_offres button a {
+      text-decoration: none;
+      color: #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .logout-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: rgb(128, 213, 99);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .logout-link:hover {
+      color: green;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      margin: auto;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #0a500a;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .actions form {
+      margin: 3px 0;
+    }
+
+    .btn {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-activer {
+      background-color: #1a941a;
+    }
+
+    .btn-desactiver {
+      background-color: #f39c12;
+    }
+
+    .btn-supprimer {
+      background-color: #e74c3c;
+    }
+
+    @media (max-width: 600px) {
+      .logout-link {
+        position: static;
+        display: block;
+        text-align: right;
+        margin: 10px 20px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>👨‍💼 Administration ZoneBourse</h1>
+  <a href="/deconnexion" class="logout-link" title="Se déconnecter">
+    <i class="fas fa-sign-out-alt"></i> logout
+  </a>
+</header>
+
+<div class="les_offres">
+  <button><a href="/admin_bourses">Gérez les bourses</a></button>
+</div>
+
+<h2>Liste des utilisateurs</h2>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Expiration</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in utilisateurs %}
+      <tr>
+        <td>{{ u.nom }}</td>
+        <td>{{ u.prenom }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ u.expiration_date }}</td>
+        <td class="actions">
+          <form method="POST" action="/admin/{{ u.id }}/activate">
+            <button type="submit" class="btn btn-activer">Activer</button>
+          </form>
+          <form method="POST" action="/admin/{{ u.id }}/deactivate">
+            <button type="submit" class="btn btn-desactiver">Désactiver</button>
+          </form>
+          <form method="POST" action="/admin/{{ u.id }}/delete" onsubmit="return confirm('Supprimer {{ u.email }} ?')">
+            <button type="submit" class="btn btn-supprimer">Supprimer</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
