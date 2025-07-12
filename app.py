@@ -379,11 +379,12 @@ def recherche_bourses():
     prenom = session.get('prenom')  # 🔹 récupération du prénom utilisateur connecté
 
     conn = psycopg2.connect(
-        host="localhost",
-        database="ZoneBourse",
-        user="Zone_user",
-        password="Pytha1991"
-    )
+    dbname=parsed_url.path[1:],  # enlever le "/" initial
+    user=parsed_url.username,
+    password=parsed_url.password,
+    host=parsed_url.hostname,
+    port=parsed_url.port
+)
     cur = conn.cursor()
 
     # Requête filtrée selon le type
