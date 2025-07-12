@@ -444,7 +444,7 @@ def dashboard():
 
     start_time = datetime.strptime(session["start_time"], "%Y-%m-%d %H:%M:%S")
     elapsed = now - start_time
-    remaining = timedelta(minutes=30) - elapsed
+    remaining = timedelta(minutes=10) - elapsed
     minutes_left = max(0, int(remaining.total_seconds() // 60))
     show_modal = elapsed > timedelta(minutes=10)
 
