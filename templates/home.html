@@ -1,50 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon website" href="/static/images/logo.jpeg">
   <title>ZONEBOURSE</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap">
+  <link rel="icon" href="/static/images/logo.jpeg">
+
+  <!-- Meilleure police élégante similaire à ton image -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: cursive;
+      font-family: 'Poppins', sans-serif;
       background-color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .header{
-        display: flex;
-        text-align: center;
-        gap: 100px;
-        padding-top: 15px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
     }
-    .logo{
-        margin-left: -140px;
-        padding-top: 10px;
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
     }
-    .header img{
-        width: 80px;
-        border-radius: 50%;
-        
-    }
-    .header h1{
-        font-family:cursive 
+
+    .header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      font-weight: normal;
     }
 
     .container {
-      max-width: 430px;
       width: 100%;
+      max-width: 430px;
       padding: 20px;
       text-align: center;
       position: relative;
     }
 
     .main-image {
-      width: 90%;
+      width: 100%;
       border-radius: 20px;
       object-fit: cover;
     }
@@ -57,55 +63,47 @@
     }
 
     .circle-img.left {
-      width: 80px;
-      height: 80px;
-      top: 160px;
-      left: 20px;
+      width: 70px;
+      height: 70px;
+      top: 170px;
+      left: 10px;
     }
 
     .circle-img.right {
       width: 70px;
       height: 70px;
-      top: 260px;
-      right: 30px;
+      top: 300px;
+      right: 15px;
     }
 
-    h1 {
-      margin-top: 30px;
-      font-size: 24px;
-      font-weight: 600;
-      font-family: cursive;
+    .container h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 22px;
+      margin-top: 40px;
     }
 
     p {
       color: #555;
       font-size: 14px;
       margin: 10px 20px 30px;
-      font-family: cursive;
-    }
-
-    .indicator {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
+      line-height: 1.5;
     }
 
     .btn-start {
       background-color: #007f3f;
       color: white;
-      font-family: cursive;
-      padding: 16px 20px;
-      font-size: 16px;
-      font-weight: bold;
+      font-family: 'Great Vibes', cursive;
+      padding: 14px 24px;
+      font-size: 18px;
       border: none;
       border-radius: 30px;
       width: 90%;
       max-width: 350px;
-      margin: 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
       text-decoration: none;
+      margin-bottom: 30px;
     }
 
     .btn-start span {
@@ -115,44 +113,39 @@
 
     @media (max-width: 480px) {
       .circle-img.left {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
         top: 140px;
-        left: 10px;
       }
-      body{
-        font-family: cursive;
-      }
+
       .circle-img.right {
-        width: 50px;
-        height: 50px;
-        top: 230px;
-        right: 15px;
+        width: 55px;
+        height: 55px;
+        top: 260px;
       }
     }
   </style>
 </head>
 <body>
-    <div class="header">
-     <img src="{{ url_for('static', filename='images/logo.jpeg') }}" class="logo">
 
-        <h1>ZONEBOURSE</h1>
-    </div>
+  <div class="header">
+    <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="logo">
+    <h1>ZONEBOURSE</h1>
+  </div>
+
   <div class="container">
 
-    <img src="{{ url_for('static', filename='images/2etud_diplom.jpeg') }}" class="main-image">
-<img src="{{ url_for('static', filename='images/rasta_dip.jpeg') }}" class="circle-img left">
-<img src="{{ url_for('static', filename='images/tof_doc.jpeg') }}" class="circle-img right">
+    <img src="{{ url_for('static', filename='images/2etud_diplom.jpeg') }}" class="main-image" alt="Graduation">
 
-    <!-- TEXTE -->
-    <h1>Votre portail d'opportunités académiques</h1>
-    <p>Explorez les meilleures universités et bourses dans le monde entier. Commencez dès maintenant votre parcours.</p>
+    <img src="{{ url_for('static', filename='images/rasta_dip.jpeg') }}" class="circle-img left" alt="small1">
+    <img src="{{ url_for('static', filename='images/tof_doc.jpeg') }}" class="circle-img right" alt="small2">
 
-    <!-- INDICATEURS -->
-    
+    <h2>Votre portail d'opportunités académiques</h2>
+    <p>Explorez les meilleures universités et bourses dans le monde entier. <br>Commencez dès maintenant votre parcours.</p>
 
-    <!-- BOUTON -->
-    <a href="/inscription" class="btn-start">Commencer maintenant <span>➜</span></a>
+    <a href="/inscription" class="btn-start">
+      Commencer maintenant <span>➜</span>
+    </a>
   </div>
 
 </body>
