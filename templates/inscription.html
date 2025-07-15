@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Inscription – ZoneBourse</title>
-    <link rel="icon website" href="/static/images/logo.jpeg">
+  <link rel="icon website" href="/static/images/logo.jpeg">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-    background-color: #007f3f;
+      background-color: #007f3f;
       color: #fff;
     }
 
@@ -58,6 +58,11 @@
       color: #000;
       margin-bottom: 30px;
       font-weight: 600;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
     }
 
     .form-input {
@@ -141,21 +146,20 @@
 
   <div class="green-section">
     <h2>Créer un compte</h2>
-    <form method="POST" action="/inscription">
-      <input class="form-input" type="text" name="nom" placeholder="Nom complet" required>
-      <input class="form-input" type="text" name="prenom" placeholder="Prénom" required>
-      <input class="form-input" type="email" name="email" placeholder="Adresse Email" required>
-      <input class="form-input" type="tel" name="numero" placeholder="Numéro de téléphone" required>
-      <input class="form-input" type="password" name="motdepasse" placeholder="Mot de passe" required>
-      <button class="form-button" type="submit">S'inscrire</button>
-    </form>
+    <div class="form-container">
+      <form method="POST" action="/inscription">
+        <input class="form-input" type="text" name="nom" placeholder="Nom complet" required>
+        <input class="form-input" type="text" name="prenom" placeholder="Prénom" required>
+        <input class="form-input" type="email" name="email" placeholder="Adresse Email" required>
+        <input class="form-input" type="tel" name="numero" placeholder="Numéro de téléphone" required>
+        <input class="form-input" type="password" name="motdepasse" placeholder="Mot de passe" required>
+        <button class="form-button" type="submit">S'inscrire</button>
+      </form>
+    </div>
 
     <div class="login-link">
       Vous avez déjà un compte ? <a href="/connexion">Connexion</a>
     </div>
-
-
-   
   </div>
 
 </body>
