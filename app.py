@@ -446,10 +446,9 @@ def dashboard():
     elapsed = now - start_time
     remaining = timedelta(minutes=10) - elapsed
     minutes_left = max(0, int(remaining.total_seconds() // 60))
-    show_modal = elapsed > timedelta(minutes=10)
 
-    # 🔥 Si le temps gratuit est épuisé → mettre à jour en "expiré"
-    if elapsed > timedelta(minutes=30):
+    # ❌ Temps gratuit épuisé → mise à jour en "expiré" et redirection
+    if elapsed > timedelta(minutes=10):
         cursor.execute("""
             UPDATE utilisateurs
             SET role = 'expiré'
@@ -459,11 +458,11 @@ def dashboard():
         session["role"] = "expiré"
         return redirect("/premium")
 
-    # ✅ Sinon, dashboard avec minuterie et modal
+    # ✅ Sinon, dashboard avec minuterie
     return render_template("dashboard.html",
                            nom=nom, prenom=prenom,
                            minutes_left=minutes_left,
-                           show_modal=show_modal)
+                           show_modal=False)
 
 # ----------------------
 @app.route("/admin")
